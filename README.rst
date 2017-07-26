@@ -12,8 +12,8 @@ The libraries reside in ``lib/spasm``.  The extra layer of indirection
 under ``lib`` accommodates the possibility of supporting additional
 assembler syntaxes in the future.
 
-Contents
-========
+Libraries
+=========
 
 This distribution contains the following assembly language libraries:
 
@@ -36,6 +36,8 @@ This distribution contains the following assembly language libraries:
 - ``write.asm`` -- This library implements text-drawing routines using
   routines from ``screen.asm``.
 
+Supplementary Files
+===================
 This distribution also contains two assembler source files which complement
 the above libraries:
 
@@ -47,7 +49,7 @@ the above libraries:
 
 Notably, this distribution does NOT include a ``ti83plus.inc`` include file
 for licensing reasons.  No explicit permission is given by TI (the original
-author) to distribut it, and the ``spasm``-adapted version is licensed under
+author) to distribute it, and the ``spasm``-adapted version is licensed under
 the GPL, which I do not want to use.  Since some of the libraries included
 in this distribution depend on this include file, the author recommends that
 the user download this file from the Internet.
