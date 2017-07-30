@@ -1,9 +1,7 @@
 : main-file zlib_test.asm
 : entry-point main
-: library test.asm
-# Hacky workaround since we don't have any resources yet.  The real fix is
-# to make the zproj code interpret undefined keys properly.
-: resource fontSBF.asm
+: library test.asm interrupt.asm keyboard.asm screen.asm draw.asm write.asm
+: resource fontSBF.asm fontFBF.asm
 
 : app-file zlib_test-app.asm
 : app-name ZLibTest
