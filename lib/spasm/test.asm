@@ -6,12 +6,28 @@
 ;;;============================================================================
 
 testMain:
+        PUSH    BC
+        PUSH    DE
         PUSH    HL
-        LD      HL, 0
-        LD      (curRow), HL
-        LD      HL, test_titleString
-        CALL    test_putString
+        LD      HL, fontSBF
+        CALL    writeSetFont
+        LD      DE, 0                ;
+        LD      HL, test_titleString ;
+        CALL    writeString          ;
+        LD      D, 8
+        LD      B, 16
+testMain_lineLoop:
+        LD      A, '='
+        CALL    writeCharacter
+        LD      A, E
+        ADD     A, 6
+        LD      E, A
+        DJNZ    testMain_lineLoop
+        CALL    screenUpdate
+        CALL    keyboardWait
         POP     HL
+        POP     DE
+        POP     BC
         RET
 
 ;;;============================================================================
@@ -25,29 +41,14 @@ testExit:
         RET
 
 ;;;============================================================================
-;;; HELPER FUNCTIONS //////////////////////////////////////////////////////////
+;;; CONSTANT DATA /////////////////////////////////////////////////////////////
 ;;;============================================================================
-
-test_putString:
-        PUSH    BC
-        PUSH    DE
-        PUSH    HL
-        JR      test_putString_skip
-test_putString_loop:
-        PUSH    HL
-        bcall(_PutC)
-        POP     HL
-        INC     HL
-test_putString_skip:
-        LD      A, (HL)
-        OR      A
-        JR      NZ, test_putString_loop
-        POP     HL
-        POP     DE
-        POP     BC
-        RET
-
-;;; DATA
 
 test_titleString:
         .db     "Test Results", 0
+
+;;;============================================================================
+;;; VARIABLE DATA /////////////////////////////////////////////////////////////
+;;;============================================================================
+
+#define TEST_DATA_SIZE 0
