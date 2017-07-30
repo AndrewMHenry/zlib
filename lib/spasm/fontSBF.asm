@@ -14,6 +14,14 @@ fontSBF_exclam:
         .db     00100000b
         .db     00000000b
         .db     00100000b
+fontSBF_equals:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     00000000b
+        .db     11111000b
+        .db     00000000b
+        .db     00000000b
 fontSBF_zero:
         .db     11111000b
         .db     10001000b
@@ -302,8 +310,214 @@ fontSBF_Z:
         .db     01000000b
         .db     10000000b
         .db     11111000b
+fontSBF_a_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     00001000b
+        .db     11111000b
+        .db     10001000b
+        .db     11111000b
+fontSBF_b_lowercase:
+        .db     10000000b
+        .db     10000000b
+        .db     11111000b
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+        .db     11111000b
+fontSBF_c_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     10000000b
+        .db     10000000b
+        .db     10000000b
+        .db     11111000b
+fontSBF_d_lowercase:
+        .db     00001000b
+        .db     00001000b
+        .db     11111000b
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+        .db     11111000b
+fontSBF_e_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     10001000b
+        .db     11111000b
+        .db     10000000b
+        .db     11111000b
+fontSBF_f_lowercase:
+        .db     01111000b
+        .db     01000000b
+        .db     01000000b
+        .db     11111000b
+        .db     01000000b
+        .db     01000000b
+        .db     01000000b
+fontSBF_g_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     10001000b
+        .db     11111000b
+        .db     00001000b
+        .db     11111000b
+fontSBF_h_lowercase:
+        .db     10000000b
+        .db     10000000b
+        .db     11111000b
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+fontSBF_i_lowercase:
+        .db     00100000b
+        .db     00000000b
+        .db     11100000b
+        .db     00100000b
+        .db     00100000b
+        .db     00100000b
+        .db     00111000b
+fontSBF_j_lowercase:
+        .db     00010000b
+        .db     00000000b
+        .db     01110000b
+        .db     00010000b
+        .db     00010000b
+        .db     10010000b
+        .db     11110000b
+fontSBF_k_lowercase:
+        .db     10000000b
+        .db     10000000b
+        .db     10001000b
+        .db     10010000b
+        .db     11100000b
+        .db     10010000b
+        .db     10001000b
+fontSBF_l_lowercase:
+        .db     11100000b
+        .db     00100000b
+        .db     00100000b
+        .db     00100000b
+        .db     00100000b
+        .db     00100000b
+        .db     00111000b
+fontSBF_m_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     10101000b
+        .db     10101000b
+        .db     10101000b
+        .db     10001000b
+fontSBF_n_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+fontSBF_o_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+        .db     11111000b
+fontSBF_p_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     10001000b
+        .db     11111000b
+        .db     10000000b
+        .db     10000000b
+fontSBF_q_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     10001000b
+        .db     11111000b
+        .db     00001000b
+        .db     00001000b
+fontSBF_r_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     01001000b
+        .db     01000000b
+        .db     01000000b
+        .db     11100000b
+fontSBF_s_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     10000000b
+        .db     11111000b
+        .db     00001000b
+        .db     11111000b
+fontSBF_t_lowercase:
+        .db     01000000b
+        .db     01000000b
+        .db     11111000b
+        .db     01000000b
+        .db     01000000b
+        .db     01000000b
+        .db     01111000b
+fontSBF_u_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+        .db     11111000b
+fontSBF_v_lowercase:
+        .db     10001000b
+        .db     10001000b
+        .db     10001000b
+        .db     10010000b
+        .db     11100000b
+fontSBF_w_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     10001000b
+        .db     10101000b
+        .db     10101000b
+        .db     10101000b
+        .db     11111000b
+fontSBF_x_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     10001000b
+        .db     11111000b
+        .db     00100000b
+        .db     11111000b
+        .db     10001000b
+fontSBF_y_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     10001000b
+        .db     10001000b
+        .db     11111000b
+        .db     00001000b
+        .db     11111000b
+fontSBF_z_lowercase:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     00010000b
+        .db     00100000b
+        .db     01000000b
+        .db     11111000b
 fontSBF:
-        .db     5, 7
+        .db     6, 7
         .dw     0
         .dw     0
         .dw     0
@@ -365,7 +579,7 @@ fontSBF:
         .dw     0
         .dw     0
         .dw     0
-        .dw     0
+        .dw     fontSBF_equals
         .dw     0
         .dw     0
         .dw     0
@@ -401,32 +615,32 @@ fontSBF:
         .dw     0
         .dw     0
         .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
-        .dw     0
+        .dw     fontSBF_a_lowercase
+        .dw     fontSBF_b_lowercase
+        .dw     fontSBF_c_lowercase
+        .dw     fontSBF_d_lowercase
+        .dw     fontSBF_e_lowercase
+        .dw     fontSBF_f_lowercase
+        .dw     fontSBF_g_lowercase
+        .dw     fontSBF_h_lowercase
+        .dw     fontSBF_i_lowercase
+        .dw     fontSBF_j_lowercase
+        .dw     fontSBF_k_lowercase
+        .dw     fontSBF_l_lowercase
+        .dw     fontSBF_m_lowercase
+        .dw     fontSBF_n_lowercase
+        .dw     fontSBF_o_lowercase
+        .dw     fontSBF_p_lowercase
+        .dw     fontSBF_q_lowercase
+        .dw     fontSBF_r_lowercase
+        .dw     fontSBF_s_lowercase
+        .dw     fontSBF_t_lowercase
+        .dw     fontSBF_u_lowercase
+        .dw     fontSBF_v_lowercase
+        .dw     fontSBF_w_lowercase
+        .dw     fontSBF_x_lowercase
+        .dw     fontSBF_y_lowercase
+        .dw     fontSBF_z_lowercase
         .dw     0
         .dw     0
         .dw     0
