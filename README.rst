@@ -36,6 +36,7 @@ This distribution contains the following assembly language libraries:
 - ``write.asm`` -- This library implements text-drawing routines using
   routines from ``screen.asm``.
 
+
 Supplementary Files
 ===================
 This distribution also contains two assembler source files which complement
@@ -46,13 +47,6 @@ the above libraries:
 
 - ``fontFBF.asm`` -- This file defines a simple monospaced font compatible with
   the included ``write.asm`` library (see description above).
-
-Notably, this distribution does NOT include a ``ti83plus.inc`` include file
-for licensing reasons.  No explicit permission is given by TI (the original
-author) to distribute it, and the ``spasm``-adapted version is licensed under
-the GPL, which I do not want to use.  Since some of the libraries included
-in this distribution depend on this include file, the author recommends that
-the user download this file from the Internet.
 
 .. [#] The term *application* used here refers to the specific TI-83 Plus
        series executable format of that name, not to executables in general.
