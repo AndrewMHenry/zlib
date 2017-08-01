@@ -93,24 +93,6 @@ the above libraries:
 - ``ti83plus.inc`` -- This is a modified version of the standard assembler
   include file supplied by TI. [2]_
 
-.. [1] The term *application* used here refers to the specific TI-83 Plus
-       series executable format of that name, not to executables in general.
-
-.. [2] The precise nature of this file's license is unclear, but it seems
-       safe to distribute.  I obtained the file from ti83plus.inc_.  Notably,
-       it does not contain the license comment included in TI's original
-       version, which demands not to be removed from any copies.  I have not
-       added this comment to the version I distribute because I have no way
-       of knowing whether the file is actually a copy of TI's version.
-
-       **I do not claim authorship of this file.  If either TI or the author
-       of the new version objects to its inclusion in this project,
-       please contact me at andrewmichaelhenry@gmail.com.**
-
-.. _ti83plus.inc: http://www.brandonw.net/calcstuff/ti83plus.txt
-
-.. _zproj: https://github.com/AndrewMHenry/zproj
-
 The libraries reside in ``lib/spasm``.  The extra layer of indirection
 under ``lib`` accommodates the possibility of supporting additional
 assembler syntaxes in the future.
