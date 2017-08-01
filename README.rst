@@ -103,8 +103,8 @@ the above libraries:
        added this comment to the version I distribute because I have no way
        of knowing whether the file is actually a copy of TI's version.
 
-       **I do not claim authorship of this file.  If either TI or the author
-       of the new version objects to its inclusion in this project,
+       **I do not claim authorship of this include file.  If either TI or the
+       author of the new version objects to its inclusion in this project,
        please contact me at andrewmichaelhenry@gmail.com.**
 
 .. _ti83plus.inc: http://www.brandonw.net/calcstuff/ti83plus.txt
