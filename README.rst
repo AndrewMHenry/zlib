@@ -88,15 +88,15 @@ This distribution also contains two assembler source files which complement
 the above libraries:
 
 - ``app.asm`` -- This file supports the structuring of TI-83 plus series
-  calculator applications [#]_.
+  calculator applications [1]_.
 
 - ``ti83plus.inc`` -- This is a modified version of the standard assembler
-  include file supplied by TI. [#]_
+  include file supplied by TI. [2]_
 
-.. [#] The term *application* used here refers to the specific TI-83 Plus
+.. [1] The term *application* used here refers to the specific TI-83 Plus
        series executable format of that name, not to executables in general.
 
-.. [#] The precise nature of this file's license is unclear, but it seems
+.. [2] The precise nature of this file's license is unclear, but it seems
        safe to distribute.  I obtained the file from ti83plus.inc_.  Notably,
        it does not contain the license comment included in TI's original
        version, which demands not to be removed from any copies.  I have not
