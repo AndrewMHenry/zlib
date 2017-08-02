@@ -14,14 +14,6 @@ fontSBF_exclam:
         .db     00100000b
         .db     00000000b
         .db     00100000b
-fontSBF_equals:
-        .db     00000000b
-        .db     00000000b
-        .db     11111000b
-        .db     00000000b
-        .db     11111000b
-        .db     00000000b
-        .db     00000000b
 fontSBF_zero:
         .db     11111000b
         .db     10001000b
@@ -102,6 +94,22 @@ fontSBF_nine:
         .db     00001000b
         .db     00001000b
         .db     11111000b
+fontSBF_equals:
+        .db     00000000b
+        .db     00000000b
+        .db     11111000b
+        .db     00000000b
+        .db     11111000b
+        .db     00000000b
+        .db     00000000b
+fontSBF_colon:
+        .db     00000000b
+        .db     00000000b
+        .db     00100000b
+        .db     00100000b
+        .db     00000000b
+        .db     00100000b
+        .db     00100000b
 fontSBF_A:
         .db     11111000b
         .db     10001000b
@@ -576,7 +584,7 @@ fontSBF:
         .dw     fontSBF_seven
         .dw     fontSBF_eight
         .dw     fontSBF_nine
-        .dw     0
+        .dw     fontSBF_colon
         .dw     0
         .dw     0
         .dw     fontSBF_equals
