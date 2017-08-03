@@ -5,13 +5,40 @@
 ;;; INTERFACE /////////////////////////////////////////////////////////////////
 ;;;============================================================================
 
+#define TEST_RESULT_PASSED      0
+#define TEST_RESULT_FAILED      1
+
 testMain:
-        PUSH    HL
-        LD      HL, fontSBF
-        CALL    writeSetFont
+        ;; INPUT:
+        ;;   <test data> -- determines tests to run
+        ;;
+        ;; OUTPUT:
+        ;;   <screen buffer and LCD> -- results written and flushed
+        ;;
+        ;; DESCRIPTION:
+        ;;   Run loaded tests and display results.
+        ;;
+        PUSH    BC
+        PUSH    DE
+        CALL    test_runAll
         CALL    test_displayResults
         CALL    keyboardWait
-        POP     HL
+        POP     DE
+        POP     BC
+        RET
+
+testLoad:
+        ;; INPUT:
+        ;;   HL -- NULL-terminated base of array of test routine addresses
+        ;;
+        ;; OUTPUT:
+        ;;   <test data> -- tests in array prepared for running
+        ;;
+        ;; NOTE: I really do mean `NULL`, not `NUL`: the end of the array
+        ;; is marked by a zero address (which does not itself count as a
+        ;; test).
+        ;;
+        LD      (test_array), HL
         RET
 
 ;;;============================================================================
@@ -29,116 +56,92 @@ testExit:
 ;;; HELPER FUNCTIONS //////////////////////////////////////////////////////////
 ;;;============================================================================
 
-test_displayResults:
-        PUSH    DE
-        PUSH    HL
-        LD      DE, 0                ;
-        LD      HL, test_lines
-        CALL    test_writeLines
-        CALL    screenUpdate
-        POP     HL
-        POP     DE
-        RET
-;;         LD      HL, test_titleString ;
-;;         CALL    writeString          ;
-;;         LD      D, 8
-;;         LD      B, 16
-;; test_displayResults_lineLoop:
-;;         LD      A, '='
-;;         CALL    writeCharacter
-;;         LD      A, E
-;;         ADD     A, 6
-;;         LD      E, A
-;;         DJNZ    test_displayResults_lineLoop
-;;         CALL    screenUpdate
-;;         CALL    keyboardWait
-;;         POP     HL
-;;         POP     DE
-;;         POP     BC
-;;         RET
-
-;;;============================================================================
-;;; HELPER ROUTINES ///////////////////////////////////////////////////////////
-;;;============================================================================
-
-test_writeStrings:
+test_runAll:
         ;; INPUT:
-        ;;   B -- number of strings in array
-        ;;   DE -- location of first character of first string
-        ;;   HL -- base of array of string bases
+        ;;   <test data> -- determines tests to run
         ;;
         ;; OUTPUT:
-        ;;   <screen buffer> -- strings written on successive lines
+        ;;   BC -- number of passed tests
+        ;;   DE -- number of failed tests
         ;;
-        PUSH    BC
-        PUSH    DE
-        PUSH    HL
-        PUSH    IX
-test_writeStrings_loop:
-        DJNZ    test_writeStrings_loop
-        POP     IX
-        POP     HL
-        POP     DE
-        POP     BC
-        RET
+        PUSH    HL                    ; STACK: [PC HL]
+        PUSH    IX                    ; STACK: [PC HL IX]
+        LD      BC, 0                 ; passed tests counter = 0
+        LD      DE, 0                 ; failed tests counter = 0
+        PUSH    HL                    ; IX = base of array
+        POP     IX                    ;
+        JR      test_runAll_loopStart ; skip to check at bottom of loop
+test_runAll_loop:                     ;
+        CALL    test_runAll_jumpHL    ; call routine addressed by HL
+        CP      TEST_RESULT_PASSED    ; increment BC if test passed
+        JR      NZ, $+3               ;
+        INC     BC                    ;
+        CP      TEST_RESULT_FAILED    ; increment DE if test failed
+        JR      NZ, $+3               ;
+        INC     DE                    ;
+test_runAll_loopStart:                ;
+        LD      A, (IX)               ; HL = (IX); IX += 2
+        LD      L, A                  ;
+        INC     IX                    ;
+        LD      A, (IX)               ;
+        LD      H, A                  ;
+        INC     IX                    ;
+        OR      L                     ; repeat loop if HL nonzero
+        JR      NZ, test_runAll_loop  ;
+        POP     IX                    ; STACK: [PC HL]
+        POP     HL                    ; STACK: [PC]
+        RET                           ; return
+test_runAll_jumpHL:                   ; (CALL here for `CALL (HL)`)
+        JP      (HL)                  ;
 
-test_writeLines:
-        PUSH    BC
-        PUSH    DE
-        PUSH    HL
-test_writeLines_outerLoop:
-        LD      A, (HL)
-        OR      A
-        JR      Z, test_writeLines_return
-test_writeLines_innerLoop:
-        CALL    writeCharacter
-        LD      A, E
-        ADD     A, 6
-        LD      E, A
-        INC     HL
-        LD      A, (HL)
-        OR      A
-        JR      NZ, test_writeLines_innerLoop
-        LD      A, D
-        ADD     A, 8
-        LD      D, A
-        LD      E, 0
-        INC     HL
-        JR      test_writeLines_outerLoop
-test_writeLines_return:
-        POP     HL
-        POP     DE
-        POP     BC
-        RET
+test_displayResults:
+        PUSH    HL                    ; STACK: [PC HL]
+        CALL    terminalClear         ; clear terminal
+        CALL    terminalCursorHome    ; bring cursor home
+        LD      HL, test_headerString ; print header
+        CALL    terminalPrintString   ;
+        LD      HL, test_passedString ; print passed string and number
+        CALL    terminalPrintString   ;
+        LD      L, C                  ;
+        LD      H, B                  ;
+        CALL    terminalPrint16Bit    ;
+        CALL    terminalNewLine       ;
+        LD      HL, test_failedString ; print failed string and number
+        CALL    terminalPrintString   ;
+        LD      L, E                  ;
+        LD      H, D                  ;
+        CALL    terminalPrint16Bit    ;
+        CALL    terminalNewLine       ;
+        LD      HL, test_totalString  ; print total string and number
+        CALL    terminalPrintString   ;
+        LD      L, E                  ;
+        LD      H, D                  ;
+        ADD     HL, BC                ;
+        CALL    terminalPrint16Bit    ;
+        POP     HL                    ; STACK: [PC]
+        RET                           ; return
 
 ;;;============================================================================
 ;;; CONSTANT DATA /////////////////////////////////////////////////////////////
 ;;;============================================================================
 
-#define TEST_NUM_STRINGS        5
-
-test_strings:
-        .dw     test_titleString
-        .dw     test_equalString
-        .dw     test_passedString
-        .dw     test_failedString
-        .dw     test_totalString
-
-test_lines:
-test_titleString:
-        .db     "Test Results", 0
-test_equalString:
-        .db     "================", 0
+test_headerString:
+        .db     "Test Results\n"
+        .db     "================"
+        .db     0
 test_passedString:
-        .db     " Passed:", 0
+        .db     " Passed: "
+        .db     0
 test_failedString:
-        .db     " Failed:", 0
+        .db     " Failed: "
+        .db     0
 test_totalString:
-        .db     "  Total:", 0
+        .db     "  Total: "
         .db     0
 
 ;;;============================================================================
 ;;; VARIABLE DATA /////////////////////////////////////////////////////////////
 ;;;============================================================================
 
-#define TEST_DATA_SIZE 0
+#define test_array      testData + 0
+#define TEST_DATA_SIZE  2
