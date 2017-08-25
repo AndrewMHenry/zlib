@@ -487,6 +487,8 @@ fontSBF_u_lowercase:
         .db     10001000b
         .db     11111000b
 fontSBF_v_lowercase:
+        .db     00000000b
+        .db     00000000b
         .db     10001000b
         .db     10001000b
         .db     10001000b
@@ -587,7 +589,7 @@ fontSBF:
         .dw     fontSBF_colon
         .dw     0
         .dw     0
-        .dw     fontSBF_equals
+        .dw     0
         .dw     0
         .dw     0
         .dw     0
