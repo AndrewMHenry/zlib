@@ -13,14 +13,14 @@ The libraries reside in ``lib/spasm``.  The extra layer of indirection
 under ``lib`` accommodates the possibility of supporting additional
 assembler syntaxes in the future.
 
-The organization of the libraries also cooperates with ``zproj``, which
-is able to install files arranged in this way.  In particular, if ``zproj``
+The organization of the libraries also cooperates with *zproj*, which
+is able to install files arranged in this way.  In particular, if *zproj*
 is installed, running
 
     ``zproj install lib``
 
 in the top-level directory of this repository will install the libraries
-for use with ``zproj``.
+for use with *zproj*.
 
 Libraries
 =========
@@ -44,7 +44,7 @@ This distribution contains the following assembly language libraries:
   screen.
 
 - ``write.asm`` -- This library implements text-drawing routines using
-  routines from ``screen.asm``.
+  ``draw.asm`` and ``screen.asm``.
 
 These libraries depend on each other as follows:
 
