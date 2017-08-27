@@ -94,7 +94,7 @@ fontSBF_nine:
         .db     00001000b
         .db     00001000b
         .db     11111000b
-fontSBF_equals:
+fontSBF_equals_sign:
         .db     00000000b
         .db     00000000b
         .db     11111000b
@@ -589,7 +589,7 @@ fontSBF:
         .dw     fontSBF_colon
         .dw     0
         .dw     0
-        .dw     0
+        .dw     fontSBF_equals_sign
         .dw     0
         .dw     0
         .dw     0
